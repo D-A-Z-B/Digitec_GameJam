@@ -4,28 +4,27 @@ using UnityEngine;
 public class RoomGenerator : MonoBehaviour
 {
     [SerializeField] private Room[] _roomPrefabs;
-    private List<Room> rooms = new List<Room>();
+    private List<Room> _rooms = new List<Room>();
 
     [SerializeField] private int _roomAmount = 9;
     [SerializeField] private float _roomOffset = 28.5f;
 
-    private Room beforeRoom;
+    private Room _beforeRoom;
 
-    [ContextMenu("Generate")]
-    private void GenerateAll() {
+    public void ActiveFirstRoom() => _rooms[0].Active();
+
+    public void GenerateAll() {
         for(int i = 0; i < 3; ++i) {
             Generate(new Vector2(_roomOffset * _roomAmount * i, 0));
         }
-        rooms[0].Active();
-        _currentRoom = rooms[0];
     }
 
-    public void Generate(Vector2 startPosition) {
+    private void Generate(Vector2 startPosition) {
         Room startRoom = Instantiate(_roomPrefabs[0], startPosition, Quaternion.identity, transform);
-        rooms.Add(startRoom);
+        _rooms.Add(startRoom);
 
-        if(beforeRoom != null) beforeRoom.nextRoom = startRoom;
-        beforeRoom = startRoom;
+        if(_beforeRoom != null) _beforeRoom.nextRoom = startRoom;
+        _beforeRoom = startRoom;
 
         bool createRestRoom = false;
         for(int i = 1; i < _roomAmount - 1; ++i) {
@@ -39,27 +38,17 @@ public class RoomGenerator : MonoBehaviour
             }
             else room = Instantiate(_roomPrefabs[1], position, Quaternion.identity, transform);
 
-            rooms.Add(room);
+            _rooms.Add(room);
             
-            beforeRoom.nextRoom = room;
-            beforeRoom = room;
+            _beforeRoom.nextRoom = room;
+            _beforeRoom = room;
         }
         
         Room bossRoom = Instantiate(_roomPrefabs[3], new Vector2(_roomOffset * (_roomAmount - 1) + startPosition.x, 0f), Quaternion.identity, transform);
 
-        rooms.Add(bossRoom);
+        _rooms.Add(bossRoom);
         
-        beforeRoom.nextRoom = bossRoom;
-        beforeRoom = bossRoom;
-    }
-
-    //Test
-    private Room _currentRoom;
-    private void Update() {
-        if(Input.GetKeyDown(KeyCode.P)) {
-            _currentRoom.Clear();
-            _currentRoom.GotoNextStage();
-            _currentRoom = _currentRoom.nextRoom;
-        }
+        _beforeRoom.nextRoom = bossRoom;
+        _beforeRoom = bossRoom;
     }
 }

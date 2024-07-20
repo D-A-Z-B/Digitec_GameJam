@@ -11,6 +11,7 @@ public class UIManager : MonoSingleton<UIManager>
     private VisualElement _root;
     private VisualElement _stageLabel;
     private UpgradeDescriptionUI _upgradeDescription;
+    private VisualElement _start;
 
     private void Awake() {
         _document = GetComponent<UIDocument>();
@@ -26,6 +27,14 @@ public class UIManager : MonoSingleton<UIManager>
 
         _upgradeDescription = new UpgradeDescriptionUI(upgradeDescription);
         _upgradeDescription.Root.style.display = DisplayStyle.None;
+
+        _start = _document.rootVisualElement.Q<VisualElement>("GameStart");
+        _start.Q<Button>("GameStartBtn").clicked += HandleGameStart;
+    }
+
+    private void HandleGameStart() {
+        _start.AddToClassList("start");
+        RoomManager.Instance.GameStart();
     }
 
     public void ShowStageLabel(string name) {
