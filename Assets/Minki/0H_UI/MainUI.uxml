@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Minki/0H_UI/MainUI.uss?fileID=7433441132597879392&amp;guid=b1a988ff3c75e5842b43e19a49a64fc6&amp;type=3#MainUI" />
+    <ui:VisualElement name="Container" style="flex-grow: 1;">
+        <ui:VisualElement name="StageLabel" class="stage-label">
+            <ui:Label tabindex="-1" text="아 스테이지 이름" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StageText" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -49,10 +49,10 @@ public class AgentMovement : MonoBehaviour, IMovement
     private void Move() {
         switch (movementType) {
             case MovementType.XY:
-                agent.RigidCompo.velocity = new Vector3(velocity.x, velocity.y);
+                agent.RigidbodyCompo.velocity = new Vector3(velocity.x, velocity.y);
             break;
             case MovementType.X:
-                agent.RigidCompo.velocity = new Vector3(velocity.x, agent.RigidCompo.velocity.y);
+                agent.RigidbodyCompo.velocity = new Vector3(velocity.x, agent.RigidbodyCompo.velocity.y);
             break;
         }
     }
