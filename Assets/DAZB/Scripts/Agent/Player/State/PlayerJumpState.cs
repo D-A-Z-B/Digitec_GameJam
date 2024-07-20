@@ -21,8 +21,8 @@ public class PlayerJumpState : PlayerState
         player.MovementCompo.SetMovement(player.InputReader.Movement * player.moveSpeed);
         if (Keyboard.current.spaceKey.isPressed) {
             currentJumpPower += 0.5f;
-            player.RigidCompo.velocity = new Vector2(player.RigidCompo.velocity.x, 0);
-            player.RigidCompo.AddForce(Vector2.up * currentJumpPower, ForceMode2D.Impulse);
+            player.RigidbodyCompo.velocity = new Vector2(player.RigidbodyCompo.velocity.x, 0);
+            player.RigidbodyCompo.AddForce(Vector2.up * currentJumpPower, ForceMode2D.Impulse);
             if (currentJumpPower >= player.limitJumpPower) {
                 stateMachine.ChangeState(PlayerStateEnum.Idle);
             }
