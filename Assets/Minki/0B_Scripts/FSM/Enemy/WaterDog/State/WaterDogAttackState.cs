@@ -12,8 +12,11 @@ public class WaterDogAttackState : AttackState
         _playerHeadTrm = PlayerManager.Instance.Head.transform;
 
         Vector2 direction = _playerHeadTrm.position - _enemy.transform.position;
-        direction *= 1.1f;
+        direction += Vector2.up * 5f;
 
-        _enemy.SetVelocity(direction.x, direction.y);
+        direction.Normalize();
+
+        _enemy.RigidbodyCompo.AddForce(direction * 7.5f, ForceMode2D.Impulse);
+        Debug.Log(direction);
     }
 }

@@ -42,7 +42,7 @@ public class Health : MonoBehaviour, IDamageable
     }
 
     public void ApplyDamage(int damage, Transform dealer) {
-        if(_owner.isDead) return;
+        if(_owner.isDead || _isInvincible) return;
 
         CurrentHealth -= damage;
 
