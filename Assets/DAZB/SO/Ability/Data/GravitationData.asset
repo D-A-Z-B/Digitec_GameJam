@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f5cc7d75c21b9649913aadff2943b47, type: 3}
+  m_Name: GravitationData
+  m_EditorClassIdentifier: 
+  name: "\uC778\uB825"
+  icon: {fileID: 21300000, guid: 5c67fc9f2ccab1243af490a53d825ab3, type: 3}
+  description: "\uB300\uCDA9 \uC124\uBA85"
+  abilityEffectSO: {fileID: 11400000, guid: 381612a92af7ae844a3ccc00b24c8733, type: 2}

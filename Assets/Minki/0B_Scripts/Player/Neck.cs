@@ -23,6 +23,9 @@ public class Neck : MonoBehaviour
     }
 
     private void Update() {
+        _playerHeadTrm = PlayerManager.Instance.Head.transform;
+        _playerBodyTrm = PlayerManager.Instance.Player.transform;
+        _head = PlayerManager.Instance.Head;
         Vector2 bodyPosition = (Vector2)_playerBodyTrm.position + Vector2.up * 0.4f;
         Vector2 headPosition = (Vector2)_playerHeadTrm.position;
 

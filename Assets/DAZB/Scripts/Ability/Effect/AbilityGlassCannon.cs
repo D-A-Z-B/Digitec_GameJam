@@ -2,7 +2,7 @@ using UnityEngine;
 
 [CreateAssetMenu(menuName = "SO/Ability/GlassCannon")]
 public class AbilityGlassCannon : AbilityEffectSO {
-    public float IncreaseAttackDamage;
+    public int IncreaseAttackDamage;
     public int DecreaseHealth = 0;
     public override void ApplyEffect()
     {

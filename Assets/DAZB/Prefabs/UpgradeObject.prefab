@@ -134,6 +134,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bigExplosionPrefab: {fileID: 2345360724694247916, guid: 7402b2e472847744a86f6154ed93b5d6, type: 3}
-  smallExplosionPrefab: {fileID: 2345360724694247916, guid: 7402b2e472847744a86f6154ed93b5d6, type: 3}
+  smallExplosionPrefab: {fileID: 1673778720813609934, guid: 912cc1921c17aaa45902a04e2dff6781, type: 3}
   _upgradeSO: {fileID: 11400000, guid: ea6abbbf48e93b94f9e34b507c211020, type: 2}
   _descriptionPosition: {fileID: 0}

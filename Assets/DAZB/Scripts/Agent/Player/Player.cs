@@ -15,12 +15,14 @@ public class Player : Agent
     [Header("Setting Values")]
     public float moveSpeed;
     public float limitJumpPower;
-    public float attackDamage;
+    public int attackDamage;
+    public int returnDamage;
     public PlayerStateMachine StateMachine {get; protected set;}
     [SerializeField] private InputReader inputReader;
     public InputReader InputReader => inputReader;
 
     protected override void Awake() {
+        returnDamage = attackDamage / 2;
         base.Awake();
         StateMachine = new PlayerStateMachine();
         foreach (PlayerStateEnum stateEnum in Enum.GetValues(typeof(PlayerStateEnum))) {
