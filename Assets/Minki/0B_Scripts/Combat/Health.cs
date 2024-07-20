@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,8 +12,11 @@ public class Health : MonoBehaviour, IDamageable
     [SerializeField] private int _maxHealth;
     [SerializeField] private int _currentHealth;
 
+    [SerializeField] private bool _isPlayer = false;
     [SerializeField] private Material _whiteMat;
     private Material _originMat;
+
+    [HideInInspector] public bool _isInvincible = false;
 
     [HideInInspector] public Image healthFilled;
 
@@ -52,12 +56,34 @@ public class Health : MonoBehaviour, IDamageable
         else Blink();
     }
 
+    [ContextMenu("Blink")]
     private void Blink() {
-        _owner.SpriteRendererCompo.material = _whiteMat;
-        healthFilled.material = _whiteMat;
-        _owner.StartDelayCallback(0.1f, () => {
-            _owner.SpriteRendererCompo.material = _originMat;
-            healthFilled.material = null;
-        });
+        if(_isPlayer) StartCoroutine(BlinkCoroutine());
+        else {
+            _owner.SpriteRendererCompo.material = _whiteMat;
+            healthFilled.material = _whiteMat;
+            _owner.StartDelayCallback(0.1f, () => {
+                _owner.SpriteRendererCompo.material = _originMat;
+                healthFilled.material = null;
+            });
+        }
+    }
+
+    private IEnumerator BlinkCoroutine() {
+        float timer = Time.deltaTime;
+
+        _owner.SpriteRendererCompo.color = new Color(1, 1, 1, 1);
+        _isInvincible = true;
+
+        while(timer < 1.5f) {
+            timer += Time.deltaTime;
+
+            float alpha = Mathf.Sin(timer * 12.6f + 1.5f) * 0.35f + 0.65f;
+            _owner.SpriteRendererCompo.color = new Color(1, 1, 1, alpha);
+
+            yield return null;
+        }
+        _owner.SpriteRendererCompo.color = new Color(1, 1, 1, 1);
+        _isInvincible = false;
     }
 }

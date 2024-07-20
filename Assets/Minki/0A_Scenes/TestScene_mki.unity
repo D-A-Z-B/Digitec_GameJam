@@ -306,8 +306,7 @@ GameObject:
   - component: {fileID: 846772264}
   - component: {fileID: 846772263}
   - component: {fileID: 846772265}
-  - component: {fileID: 846772267}
-  - component: {fileID: 846772266}
+  - component: {fileID: 846772268}
   m_Layer: 0
   m_Name: TestPlayer
   m_TagString: Untagged
@@ -398,7 +397,7 @@ MonoBehaviour:
   _whatIsInteractable:
     serializedVersion: 2
     m_Bits: 128
---- !u!114 &846772266
+--- !u!114 &846772268
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -407,32 +406,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 846772262}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdd0c9a50799aa54e941456c6dc75e75, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c878ceb6e53f22489f41010b92fdc66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDead: 0
-  attackSpeed: 0
-  attackCoolDown: 0
-  returnLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  inputReader: {fileID: 11400000, guid: a869a1869e4174e478d0cb605004dca3, type: 2}
---- !u!114 &846772267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 846772262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de560046192e9b74c8f3c1e2a644a553, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDead: 0
-  moveSpeed: 0
-  limitJumpPower: 0
-  inputReader: {fileID: 11400000, guid: a869a1869e4174e478d0cb605004dca3, type: 2}
+  _maxHealth: 0
+  _currentHealth: 0
+  _isPlayer: 1
+  _whiteMat: {fileID: 0}
+  healthFilled: {fileID: 0}
 --- !u!1 &883588218
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,7 +495,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &962939285
 Transform:
   m_ObjectHideFlags: 0
@@ -642,6 +623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 10
   _currentHealth: 0
+  _isPlayer: 0
   _whiteMat: {fileID: 2100000, guid: 080f5c3a55467d94f905435e0c136e1a, type: 2}
   healthFilled: {fileID: 0}
 --- !u!1 &1063446627
