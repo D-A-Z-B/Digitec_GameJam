@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: ComeBack
   m_EditorClassIdentifier: 
   AlreadyApplied: 0
+  icon: {fileID: 21300000, guid: b2bbffcbdc1915c41a5986314f820d79, type: 3}
   IncreaseRange: 1

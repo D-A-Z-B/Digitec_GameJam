@@ -121,7 +121,7 @@ public class HeadMovingState : HeadState
         int numColliders = Physics2D.OverlapCircleNonAlloc(head.transform.position, 0.5f, collider2DResults, head.returnLayer);
         for (int i = 0; i < numColliders; i++) {
             if (collider2DResults[i].gameObject.layer == LayerMask.NameToLayer("Enemy")) {
-                //collider2DResults[i].GetComponent<Health>().ApplyDamage(head.player.attackDamage, head.transform);
+                collider2DResults[i].GetComponent<Health>().ApplyDamage(head.player.attackDamage, head.transform);
                 if (head.AbilityApShot) {
                     return false;
                 }
@@ -135,7 +135,29 @@ public class HeadMovingState : HeadState
         return false;
     }
 
+    private Collider2D[] result = new Collider2D[10];
     private bool JustEvasionCheck() {
+        int numEnemies = Physics2D.OverlapCircleNonAlloc(head.transform.position, 5, result, LayerMask.GetMask("Enemy"));
+        if (numEnemies > 0) {
+            Collider2D closestEnemy = null;
+            float closestDistance = Mathf.Infinity;
+
+            for (int i = 0; i < numEnemies; i++) {
+                float distance = Vector2.Distance(head.transform.position, result[i].transform.position);
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestEnemy = result[i];
+                }
+            }
+
+            if (closestEnemy != null) {
+                Vector2 direction = (head.transform.position - closestEnemy.transform.position).normalized;
+                RaycastHit2D hit = Physics2D.Raycast(closestEnemy.transform.position, direction, head.JustEvasionCheckRange, LayerMask.GetMask("Player"));
+                if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Player")) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 }

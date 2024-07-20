@@ -22,7 +22,7 @@ public class Health : MonoBehaviour, IDamageable
     [SerializeField] private Material _whiteMat;
     private Material _originMat;
 
-    [HideInInspector] public bool isInvincible = false;
+    public bool isInvincible = false;
 
     public Image healthFilled;
 
@@ -32,7 +32,9 @@ public class Health : MonoBehaviour, IDamageable
         get => _currentHealth;
         set {
             _currentHealth = Mathf.Clamp(value, 0, _maxHealth);
-            healthFilled.fillAmount = (float)_currentHealth / _maxHealth;
+            if (healthFilled != null) {
+                healthFilled.fillAmount = (float)_currentHealth / _maxHealth;
+            }
         }
     }
 
@@ -72,10 +74,14 @@ public class Health : MonoBehaviour, IDamageable
         if(_isPlayer) StartCoroutine(BlinkCoroutine());
         else {
             _owner.SpriteRendererCompo.material = _whiteMat;
-            healthFilled.material = _whiteMat;
+            if (healthFilled != null) {
+                healthFilled.material = _whiteMat;
+            }
             _owner.StartDelayCallback(0.1f, () => {
                 _owner.SpriteRendererCompo.material = _originMat;
-                healthFilled.material = null;
+                if (healthFilled != null) {
+                    healthFilled.material = null;
+                }
             });
         }
     }

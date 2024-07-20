@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 5792712663213633469}
   - component: {fileID: 3803126256197048280}
   - component: {fileID: 7958048156559055958}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Caterpillar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

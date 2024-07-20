@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Spark
   m_EditorClassIdentifier: 
   AlreadyApplied: 0
+  icon: {fileID: 21300000, guid: 78cfff033ad6fd84b97c544b5b1f7faa, type: 3}
   sparkPrefab: {fileID: 913923583785292957, guid: be972dd7838100746ad97fd2ac0e47aa, type: 3}
   count: 3
   IncreaseAttackCooldown: 1

@@ -58,9 +58,38 @@ public class Head : Agent {
         StateMachine.CurrentState.UpdateState();
     }
 
-    
+    private Collider2D[] result = new Collider2D[10];
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, 0.5f);
+
+            // Draw the collision check circle
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 0.5f);
+
+        // Draw the evasion check circle
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, 5f);
+
+        // Draw the raycast for the closest enemy
+        int numEnemies = Physics2D.OverlapCircleNonAlloc(transform.position, 5, result, LayerMask.GetMask("Enemy"));
+        if (numEnemies > 0) {
+            Collider2D closestEnemy = null;
+            float closestDistance = Mathf.Infinity;
+
+            for (int i = 0; i < numEnemies; i++) {
+                float distance = Vector2.Distance(transform.position, result[i].transform.position);
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestEnemy = result[i];
+                }
+            }
+
+            if (closestEnemy != null) {
+                Vector2 direction = (transform.position - closestEnemy.transform.position).normalized;
+                Gizmos.color = Color.green;
+                Gizmos.DrawLine(closestEnemy.transform.position, closestEnemy.transform.position + (Vector3)(direction * JustEvasionCheckRange));
+            }
+        }
     }
 }

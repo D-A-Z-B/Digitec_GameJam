@@ -39,6 +39,7 @@ public class UpgradeObject : MonoBehaviour, IInteractable
         if (Keyboard.current.fKey.isPressed) {
             UIManager.Instance.DeactiveUpgradeDescription();
             AbilityManager.Instance.SelectObject(index);
+            Destroy(gameObject);
         }
     }
 

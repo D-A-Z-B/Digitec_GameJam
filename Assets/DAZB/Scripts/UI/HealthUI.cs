@@ -6,12 +6,7 @@ using UnityEngine.UI;
 
 public class HealthUI : MonoBehaviour
 {
-    [SerializeField] private GameObject healthContainer;
-    private List<Image> boardList = new List<Image>();
-
-    private void Awake() {
-        boardList = healthContainer.GetComponentsInChildren<Image>().ToList();
-    }
+    public List<Image> boardList = new List<Image>();
 
     private void Update() {
         for (int i = 0; i < boardList.Count; ++i) {
@@ -19,6 +14,16 @@ public class HealthUI : MonoBehaviour
         }
         for (int i = 0; i < PlayerManager.Instance.Head.HealthCompo.MaxHealth; ++i) {
             boardList[i].gameObject.SetActive(true);
+        }
+
+        for (int i = 0; i < boardList.Count; ++i) {
+            boardList[i].transform.Find("Red").gameObject.SetActive(false);
+            boardList[i].transform.Find("Black").gameObject.SetActive(true);
+        }
+
+        for (int i = 0; i < PlayerManager.Instance.Head.HealthCompo.CurrentHealth; ++i) {
+            boardList[i].transform.Find("Red").gameObject.SetActive(true);
+            boardList[i].transform.Find("Black").gameObject.SetActive(false);
         }
     }
 }

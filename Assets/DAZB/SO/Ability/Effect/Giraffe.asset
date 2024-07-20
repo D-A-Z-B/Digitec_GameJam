@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Giraffe
   m_EditorClassIdentifier: 
   AlreadyApplied: 0
+  icon: {fileID: 21300000, guid: 955a2ee2aaa0cfc459eef232e0dce7d1, type: 3}
   IncreaseRange: 2

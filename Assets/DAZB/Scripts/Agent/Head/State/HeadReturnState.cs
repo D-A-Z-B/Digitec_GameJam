@@ -93,7 +93,7 @@ public class HeadReturnState : HeadState
         int numColliders = Physics2D.OverlapCircleNonAlloc(head.transform.position, 0.5f, collider2DResults, head.returnLayer);
         for (int i = 0; i < numColliders; i++) {
             if (collider2DResults[i].gameObject.layer == LayerMask.NameToLayer("Enemy")) {
-                //collider2DResults[i].GetComponent<Health>().ApplyDamage(head.player.returnDamage, head.transform);
+                collider2DResults[i].GetComponent<Health>().ApplyDamage(head.player.returnDamage, head.transform);
             }
         }
     }

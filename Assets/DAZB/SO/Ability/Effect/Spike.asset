@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Spike
   m_EditorClassIdentifier: 
   AlreadyApplied: 0
+  icon: {fileID: 21300000, guid: 88d30f283696fb441abe985f77312836, type: 3}
   headObject: {fileID: 1597430980350349463, guid: 6ba6303d19ece1446a0cee0c7e4bc1e3, type: 3}

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Bliend
   m_EditorClassIdentifier: 
   AlreadyApplied: 0
+  icon: {fileID: 21300000, guid: 24d6fe2ef5382d745966f617b8fe046f, type: 3}
   IncreaseAttackDamage: 25

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: ApShot
   m_EditorClassIdentifier: 
   AlreadyApplied: 0
+  icon: {fileID: 21300000, guid: b7e694f36fca32742a86647d5f451d4d, type: 3}
   DecreaseDamage: 5
   IncreaseAttackSpeed: 0.5

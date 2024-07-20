@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: GlassCannon
   m_EditorClassIdentifier: 
   AlreadyApplied: 0
+  icon: {fileID: 21300000, guid: 008437839292dca4b91836eaeb638295, type: 3}
   IncreaseAttackDamage: 10
   DecreaseHealth: -20

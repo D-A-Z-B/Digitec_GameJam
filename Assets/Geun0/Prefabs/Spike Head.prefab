@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 2180929212688880392}
   - component: {fileID: 6452821879255005346}
   - component: {fileID: 1419696437292345010}
+  - component: {fileID: -7852141261821479405}
   m_Layer: 0
   m_Name: Spike Head
   m_TagString: Untagged
@@ -145,6 +146,10 @@ MonoBehaviour:
   ShockWave: {fileID: 0}
   inputReader: {fileID: 11400000, guid: a869a1869e4174e478d0cb605004dca3, type: 2}
   AbilityReignite: 0
+  AbilityComeBack: 0
+  AbilityGravitation: 0
+  AbilitySpark: 0
+  AbilityApShot: 0
 --- !u!114 &1419696437292345010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,6 +162,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12fc3f141fc18794a949a9be407dc08b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-7852141261821479405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597430980350349463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c878ceb6e53f22489f41010b92fdc66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 0
+  _currentHealth: 0
+  _isPlayer: 0
+  _whiteMat: {fileID: 2100000, guid: 080f5c3a55467d94f905435e0c136e1a, type: 2}
+  isInvincible: 0
+  healthFilled: {fileID: 0}
 --- !u!1 &4781988811351162334
 GameObject:
   m_ObjectHideFlags: 0

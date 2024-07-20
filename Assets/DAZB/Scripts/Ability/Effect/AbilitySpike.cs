@@ -20,6 +20,8 @@ public class AbilitySpike : AbilityEffectSO {
             newObjectHead.returnLayer = PlayerManager.Instance.Head.returnLayer;
             newObjectHead.attackRange = PlayerManager.Instance.Head.attackRange;
             newObjectHead.ShockWave = PlayerManager.Instance.Head.ShockWave;
+            newObjectHead.HealthCompo.MaxHealth = PlayerManager.Instance.Head.HealthCompo.MaxHealth;
+            newObjectHead.HealthCompo.CurrentHealth = PlayerManager.Instance.Head.HealthCompo.CurrentHealth;
             Destroy(PlayerManager.Instance.Head.gameObject);
             go.transform.SetParent(PlayerManager.Instance.Player.transform.parent);
         }
