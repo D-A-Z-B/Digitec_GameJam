@@ -43,7 +43,7 @@ public class HeadMovingState : HeadState
         moveDir = (mousePos - (Vector2)head.transform.position).normalized;
         startPos = head.transform.position;
         
-        head.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(moveDir.y, moveDir.x));
+        head.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg -90);
 
         if (moveRoutine != null) {
             head.StopCoroutine(moveRoutine);
@@ -83,7 +83,6 @@ public class HeadMovingState : HeadState
             head.StopCoroutine(moveRoutine);
             moveRoutine = null;
         }
-        head.transform.eulerAngles = Vector2.zero;
         base.Exit();
     }
 

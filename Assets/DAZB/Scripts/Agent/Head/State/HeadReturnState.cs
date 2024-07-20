@@ -30,6 +30,7 @@ public class HeadReturnState : HeadState
             head.StopCoroutine(returnRoutine);
             returnRoutine = null;
         }
+        head.transform.eulerAngles = Vector2.zero;
         base.Exit();
     }
 
