@@ -17,6 +17,7 @@ public class WaterDogAttackState : AttackState
         direction.Normalize();
 
         _enemy.RigidbodyCompo.AddForce(direction * 7.5f, ForceMode2D.Impulse);
-        Debug.Log(direction);
+
+        _enemy.StartDelayCallback(3f, () => _stateMachine.ChangeState(EnemyStateEnum.Chase));
     }
 }

@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class BattleRoom : Room
 {
-    [SerializeField] private PhaseSO[] _phases;
+    [System.Serializable]
+    struct EnemySpawnSet {
+        public Enemy enemy;
+        public Transform position;
+    }
+
+    [SerializeField] private List<EnemySpawnSet>[] _phases;
     [SerializeField] private GameObject _upgradeObjects;
 
     private int _currentPhase = 0;
@@ -32,7 +38,7 @@ public class BattleRoom : Room
 
         ++RoomManager.Instance.BattleCount;
 
-        if(RoomManager.Instance.BattleCount == 2) {
+        if(RoomManager.Instance.BattleCount == 1) {
             foreach(Transform upgradeObject in _upgradeObjects.transform) {
                 upgradeObject.GetComponent<UpgradeObject>().OnInteractEnd += Clear;
             }
@@ -42,7 +48,7 @@ public class BattleRoom : Room
     }
 
     public void Generate() {
-        EnemySpawnSet[] enemySet = _phases[_currentPhase].enemySet;
+        EnemySpawnSet[] enemySet = _phases[_currentPhase].ToArray();
 
         for(int i = 0; i < enemySet.Length; ++i) {
             Enemy enemy = Instantiate(enemySet[i].enemy, enemySet[i].position.position, Quaternion.identity, transform);

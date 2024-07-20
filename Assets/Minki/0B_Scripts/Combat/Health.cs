@@ -22,9 +22,9 @@ public class Health : MonoBehaviour, IDamageable
     [SerializeField] private Material _whiteMat;
     private Material _originMat;
 
-    [HideInInspector] public bool _isInvincible = false;
+    [HideInInspector] public bool isInvincible = false;
 
-    [HideInInspector] public Image healthFilled;
+    public Image healthFilled;
 
     private Agent _owner;
 
@@ -53,7 +53,7 @@ public class Health : MonoBehaviour, IDamageable
     }
 
     public void ApplyDamage(int damage, Transform dealer) {
-        if(_owner.isDead || _isInvincible) return;
+        if(_owner.isDead || isInvincible) return;
 
         CurrentHealth -= damage;
 
@@ -84,7 +84,7 @@ public class Health : MonoBehaviour, IDamageable
         float timer = Time.deltaTime;
 
         _owner.SpriteRendererCompo.color = new Color(1, 1, 1, 1);
-        _isInvincible = true;
+        isInvincible = true;
 
         while(timer < 1.5f) {
             timer += Time.deltaTime;
@@ -95,6 +95,6 @@ public class Health : MonoBehaviour, IDamageable
             yield return null;
         }
         _owner.SpriteRendererCompo.color = new Color(1, 1, 1, 1);
-        _isInvincible = false;
+        isInvincible = false;
     }
 }
