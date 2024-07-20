@@ -19,7 +19,7 @@ public class HeadMovingState : HeadState
     public override void Enter()
     {
         base.Enter();
-        head.HealthCompo._isInvincible = true;
+        head.HealthCompo.isInvincible = true;
         if (extraMove == false)
         {
             if (Time.time > lastAttackTime + head.attackCoolDown)
