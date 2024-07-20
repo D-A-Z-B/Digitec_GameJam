@@ -5,7 +5,7 @@ using System.Collections;
 
 public class Room : MonoBehaviour
 {
-    [SerializeField] private CinemachineVirtualCamera v_cam;
+    public CinemachineVirtualCamera v_cam;
     [SerializeField] private Portal _portal;
     [SerializeField] private GameObject _frontWall;
     [SerializeField] private GameObject _backWall;

@@ -4,9 +4,11 @@ public enum EnemyStateEnum {
     Chase, Attack, Dead
 }
 
+[RequireComponent(typeof(Rigidbody2D))]
 public abstract class Enemy : Agent {
     public EnemyStateMachine<EnemyStateEnum> StateMachine { get; protected set; }
 
+    [HideInInspector] public Collider2D ColliderCompo;
     [HideInInspector] public DamageCaster DamageCasterCompo;
 
     [Header("Movement Settings")]
@@ -14,7 +16,7 @@ public abstract class Enemy : Agent {
 
     [Header("Check Settings")]
     public float nearDistance;
-    [SerializeField] private  LayerMask _whatIsPlayer;
+    [SerializeField] protected  LayerMask _whatIsPlayer;
     public LayerMask whatIsObstacle;
 
     [Header("Attack Settings")]
@@ -31,6 +33,7 @@ public abstract class Enemy : Agent {
         SpriteRendererCompo = visualTrm.GetComponent<SpriteRenderer>();
         AnimatorCompo = visualTrm.GetComponent<Animator>();
 
+        ColliderCompo = GetComponent<Collider2D>();
         DamageCasterCompo = GetComponent<DamageCaster>();
 
         HealthCompo = GetComponent<Health>();

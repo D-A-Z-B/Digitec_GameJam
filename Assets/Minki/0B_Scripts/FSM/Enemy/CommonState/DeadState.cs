@@ -6,5 +6,7 @@ public class DeadState : EnemyState<EnemyStateEnum>
         base.Enter();
 
         _enemy.StopImmediately(false);
+
+        _enemy.ColliderCompo.enabled = false;
     }
 }
