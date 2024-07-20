@@ -10,7 +10,12 @@ public class BattleRoom : Room
         public Transform position;
     }
 
-    [SerializeField] private List<EnemySpawnSet>[] _phases;
+    [System.Serializable]
+    struct EnemySet {
+        public EnemySpawnSet[] spawnSet;
+    }
+
+    [SerializeField] private EnemySet[] _phases;
     [SerializeField] private GameObject _upgradeObjects;
 
     private int _currentPhase = 0;
@@ -48,7 +53,7 @@ public class BattleRoom : Room
     }
 
     public void Generate() {
-        EnemySpawnSet[] enemySet = _phases[_currentPhase].ToArray();
+        EnemySpawnSet[] enemySet = _phases[_currentPhase].spawnSet;
 
         for(int i = 0; i < enemySet.Length; ++i) {
             Enemy enemy = Instantiate(enemySet[i].enemy, enemySet[i].position.position, Quaternion.identity, transform);

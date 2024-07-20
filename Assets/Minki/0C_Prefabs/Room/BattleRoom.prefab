@@ -647,6 +647,7 @@ MonoBehaviour:
   _backWall: {fileID: 6143306125809133985}
   _stageName: "\uC2F8\uC6C0\uBC29"
   nextRoom: {fileID: 0}
+  _phases: []
   _upgradeObjects: {fileID: 7167641523076286286}
 --- !u!1 &5012055197416951804
 GameObject:
