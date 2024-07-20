@@ -16,10 +16,13 @@ public class Agent : MonoBehaviour
     public bool CanStateChangeable {get; private set;} = true;
 
     protected virtual void Awake() {
-        MovementCompo = GetComponent<IMovement>();
-        AnimatorCompo = GetComponent<Animator>();
+        if(TryGetComponent(out Animator animator))
+            AnimatorCompo = GetComponent<Animator>();
         RigidbodyCompo = GetComponent<Rigidbody2D>();
-        MovementCompo.Initialize(this);
+        if(TryGetComponent(out IMovement movement)) {
+            MovementCompo = movement;
+            MovementCompo.Initialize(this);
+        }
     }
 
     #region Delay callback coroutine
