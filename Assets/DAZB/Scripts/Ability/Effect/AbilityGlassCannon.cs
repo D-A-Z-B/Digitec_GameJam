@@ -7,6 +7,7 @@ public class AbilityGlassCannon : AbilityEffectSO {
     public override void ApplyEffect()
     {
         if (!AlreadyApplied) {
+            AlreadyApplied = true;
             PlayerManager.Instance.Player.attackDamage += IncreaseAttackDamage;
             PlayerManager.Instance.Player.GetComponent<Health>().MaxHealth += DecreaseHealth;
         }

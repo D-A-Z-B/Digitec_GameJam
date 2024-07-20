@@ -8,7 +8,8 @@ public class AbilitySensitive : AbilityEffectSO
     public override void ApplyEffect()
     {
         if (!AlreadyApplied) {
-            PlayerManager.Instance.Head.defaultJustEvasionCheckRange += IncreaseJustEvasionRange;
+            AlreadyApplied = true;
+            PlayerManager.Instance.Head.JustEvasionCheckRange += IncreaseJustEvasionRange;
         }
     }
 }

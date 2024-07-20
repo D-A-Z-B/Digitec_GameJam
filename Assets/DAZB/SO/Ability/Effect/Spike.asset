@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 974d3246d6dd5b948867884542ff45dc, type: 3}
-  m_Name: Reignite
+  m_Script: {fileID: 11500000, guid: 7a11a12fecfafba409e61ea35019c79d, type: 3}
+  m_Name: Spike
   m_EditorClassIdentifier: 
   AlreadyApplied: 0
-  DecreaseCooldown: 0.25
+  headObject: {fileID: 1597430980350349463, guid: 6ba6303d19ece1446a0cee0c7e4bc1e3, type: 3}
