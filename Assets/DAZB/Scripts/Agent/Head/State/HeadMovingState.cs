@@ -8,21 +8,33 @@ public class HeadMovingState : HeadState
     {
     }
 
-    float lastAttackTime;
-    bool extraMove = false;
+    private float lastAttackTime;
+    private bool extraMove = false;
 
-    Vector2 moveDir;
-    Vector2 startPos;
-    Vector2 mousePos;
-    Coroutine moveRoutine;
+    private Vector2 moveDir;
+    private Vector2 startPos;
+    private Vector2 mousePos;
+    private Coroutine moveRoutine;
+    private bool first = true;
 
     public override void Enter()
     {
         base.Enter();
-        if (extraMove == false) {
-            if (Time.time > lastAttackTime + head.attackCoolDown) {
-                stateMachine.ChangeState(HeadStateEnum.OnBody);
-                return;
+        // 공격 시점 기록
+
+        if (extraMove == false)
+        {
+            if (first) {
+                first = false;
+            }
+            else {
+                if (Time.time < lastAttackTime + head.attackCoolDown) {
+                    stateMachine.ChangeState(HeadStateEnum.OnBody);
+                    return;
+                }
+                else {
+                    lastAttackTime = Time.time;
+                }
             }
         }
 
@@ -44,11 +56,13 @@ public class HeadMovingState : HeadState
                 if (extraMove == true) {
                     extraMove = false;
                     stateMachine.ChangeState(HeadStateEnum.Return);
-                } else {
+                }
+                else {
                     if (JustEvasionCheck()) {
                         extraMove = true;
                         stateMachine.ChangeState(HeadStateEnum.JustMoving);
-                    } else {
+                    }
+                    else {
                         stateMachine.ChangeState(HeadStateEnum.Return);
                     }
                 }
@@ -62,10 +76,9 @@ public class HeadMovingState : HeadState
         }
     }
 
-    public override void Exit()
-    {
+    public override void Exit() {
         base.Exit();
-        lastAttackTime = Time.time;
+        // 상태를 떠날 때 lastAttackTime을 업데이트 하지 않음
         if (moveRoutine != null) {
             head.StopCoroutine(moveRoutine);
             moveRoutine = null;
@@ -83,6 +96,6 @@ public class HeadMovingState : HeadState
     }
 
     private bool JustEvasionCheck() {
-        return true;
+        return false;
     }
 }

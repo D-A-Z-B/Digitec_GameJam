@@ -10,6 +10,12 @@ public class Health : MonoBehaviour, IDamageable
     [Header("Health Settings")]
     [SerializeField] private int _maxHealth;
     [SerializeField] private int _currentHealth;
+    public int MaxHealth {
+        get => _maxHealth;
+        set {
+            _maxHealth = value;
+        }
+    }
 
     [SerializeField] private Material _whiteMat;
     private Material _originMat;
