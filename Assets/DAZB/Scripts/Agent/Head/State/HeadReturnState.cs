@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class HeadReturnState : HeadState
 {
@@ -12,14 +13,24 @@ public class HeadReturnState : HeadState
     public override void Enter()
     {
         base.Enter();
-        if (head.AbilityReignite) {
-            head.StartDelayCallback(0.3f, () => stateMachine.ChangeState(HeadStateEnum.OnBody));
-        }
+        head.HealthCompo._isInvincible = true;
         if (returnRoutine != null)
         {
             head.StopCoroutine(returnRoutine);
         }
-        head.StartDelayCallback(0.3f, () => returnRoutine = head.StartCoroutine(ReturnRoutine()));
+
+        if (head.AbilityComeBack && head.AbilityReignite) {
+            head.StartDelayCallback(() => Mouse.current.leftButton.wasPressedThisFrame, () => stateMachine.ChangeState(HeadStateEnum.OnBody));
+        }
+        else if (head.AbilityReignite) {
+            head.StartDelayCallback(0.3f, () => stateMachine.ChangeState(HeadStateEnum.OnBody));
+        }
+        else if (head.AbilityComeBack) {
+             head.StartDelayCallback(() => Mouse.current.leftButton.wasPressedThisFrame, () => returnRoutine = head.StartCoroutine(ReturnRoutine()));
+        }
+        else {
+            head.StartDelayCallback(0.3f, () => returnRoutine = head.StartCoroutine(ReturnRoutine()));
+        }
     }
 
     public override void Exit()
@@ -34,29 +45,56 @@ public class HeadReturnState : HeadState
         base.Exit();
     }
 
-    private IEnumerator ReturnRoutine() {
-        while (head.ReturnPositionList.Count > 1) {
+    private IEnumerator ReturnRoutine()
+    {
+        float elapsedTime;
+        float duration;
+        while (head.ReturnPositionList.Count > 1)
+        {
             Vector2 endPos = head.ReturnPositionList.Peek();
+            Vector2 startPos = head.transform.position;
+            elapsedTime = 0;
+            duration = 1f / head.attackSpeed;
+
             while (Vector2.Distance(head.transform.position, endPos) > 0.1f)
             {
-                Vector2 currentPos = head.transform.position;
-                Vector2 moveDir = (endPos - currentPos).normalized;
-                head.transform.position += (Vector3)(head.attackSpeed * 2 * Time.deltaTime * moveDir);
+                AttackCheck();
+                elapsedTime += Time.deltaTime;
+                head.transform.position = Vector2.Lerp(startPos, endPos, elapsedTime / duration);
                 yield return null;
             }
+
             head.ReturnPositionList.Pop();
             head.MovementCompo.StopImmediately();
         }
+
         Vector2 playerPos = new Vector2(head.player.transform.position.x, head.player.transform.position.y + head.neckDistance);
-        while (Vector2.Distance(head.transform.position, playerPos) > 0.1f) {
+        Vector2 startReturnPos = head.transform.position;
+        elapsedTime = 0;
+        duration = 1f / head.attackSpeed;
+
+        while (Vector2.Distance(head.transform.position, playerPos) > 0.1f)
+        {
+            AttackCheck();
             playerPos = new Vector2(head.player.transform.position.x, head.player.transform.position.y + head.neckDistance);
-            Vector2 currentPos = head.transform.position;
-            Vector2 moveDir = (playerPos - currentPos).normalized;
-            head.transform.position += (Vector3)(head.returnSpeed * Time.deltaTime * moveDir);
+            elapsedTime += Time.deltaTime * head.returnSpeed; // Speed up the interpolation
+            head.transform.position = Vector2.Lerp(startReturnPos, playerPos, elapsedTime / duration);
             yield return null;
         }
+
         head.ReturnPositionList.Clear();
         head.MovementCompo.StopImmediately();
         stateMachine.ChangeState(HeadStateEnum.OnBody);
+    }
+
+    private Collider2D[] collider2DResults = new Collider2D[10];
+    public void AttackCheck()
+    {
+        int numColliders = Physics2D.OverlapCircleNonAlloc(head.transform.position, 0.5f, collider2DResults, head.returnLayer);
+        for (int i = 0; i < numColliders; i++) {
+            if (collider2DResults[i].gameObject.layer == LayerMask.NameToLayer("Enemy")) {
+                //collider2DResults[i].GetComponent<Health>().ApplyDamage(head.player.returnDamage, head.transform);
+            }
+        }
     }
 }

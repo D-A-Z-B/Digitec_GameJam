@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f5d8f7fb768db8459c74baed8ab4fae, type: 3}
   m_Name: Bliend
   m_EditorClassIdentifier: 
-  AlreadyApplied: 1
+  AlreadyApplied: 0
   IncreaseAttackDamage: 25

@@ -7,7 +7,7 @@ public class AbilityManager : MonoSingleton<AbilityManager>
     [field: SerializeField] public List<AbilityEffectSO> PlayerAbilityEffectSOList { get; private set; } = new List<AbilityEffectSO>();
     public Transform uiPos;
     public List<UpgradeObject> abilityObjectPrefabs = new List<UpgradeObject>();
-    private List<UpgradeObject> spawnedUpgradeObjects = new List<UpgradeObject>(); // List로 수정
+    public List<UpgradeObject> spawnedUpgradeObjects = new List<UpgradeObject>(); // List로 수정
 
     private void Update()
     {

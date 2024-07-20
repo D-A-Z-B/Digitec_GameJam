@@ -25,7 +25,11 @@ public class Head : Agent {
     public InputReader InputReader => inputReader;
     public Player player {get; protected set;}
     [HideInInspector] public Stack<Vector2> ReturnPositionList = new Stack<Vector2>();
-    [HideInInspector] public bool AbilityReignite = false;
+    public bool AbilityReignite = false;
+    public bool AbilityComeBack = false;
+    public bool AbilityGravitation = false;
+    public bool AbilitySpark = false;
+    public Action SparkEvent;
     protected override void Awake()
     {
         base.Awake();

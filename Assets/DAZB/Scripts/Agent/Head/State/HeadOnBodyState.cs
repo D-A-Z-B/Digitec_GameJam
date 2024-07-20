@@ -11,6 +11,7 @@ public class HeadOnBodyState : HeadState
     {
         base.Enter();
         head.InputReader.HeadMoveEvent += HeadMoveEventHandle;
+        head.HealthCompo._isInvincible = false;
     }
 
     public override void UpdateState()

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5611bad2e5b48c240a51124be18aeed1, type: 3}
   m_Name: GlassCannon
   m_EditorClassIdentifier: 
-  AlreadyApplied: 1
+  AlreadyApplied: 0
   IncreaseAttackDamage: 10
   DecreaseHealth: -20

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2920903ae5aea384f8ff7a545ed7f728, type: 3}
   m_Name: Spark
   m_EditorClassIdentifier: 
-  AlreadyApplied: 1
-  sparkPrefab: {fileID: 913923583785292957, guid: 4497b0d0d6b267146bfd82a0966f71d7, type: 3}
+  AlreadyApplied: 0
+  sparkPrefab: {fileID: 913923583785292957, guid: be972dd7838100746ad97fd2ac0e47aa, type: 3}
   count: 3
+  IncreaseAttackCooldown: 1

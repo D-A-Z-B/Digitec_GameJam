@@ -40,7 +40,12 @@ public class Health : MonoBehaviour, IDamageable
         _owner = owner;
 
         _currentHealth = _maxHealth;
-        _originMat = _owner.SpriteRendererCompo.material;
+        try {
+            _originMat = _owner.SpriteRendererCompo.material;
+        }
+        catch {
+            _originMat = PlayerManager.Instance.Player.transform.Find("Torso").GetComponent<SpriteRenderer>().material;
+        }
     }
 
     public void IncreaseHealth(int value) {

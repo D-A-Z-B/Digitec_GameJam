@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3745713601563045030}
   - component: {fileID: 604975129384671109}
   - component: {fileID: 3201271702388296721}
+  - component: {fileID: -6373539384544329814}
   m_Layer: 0
   m_Name: BIgExplosion
   m_TagString: Untagged
@@ -106,3 +107,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-6373539384544329814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2345360724694247916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ef7d9fa27bc7f44a1ca1c3d13e5c79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

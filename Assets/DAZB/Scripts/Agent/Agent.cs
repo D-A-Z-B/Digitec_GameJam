@@ -23,6 +23,10 @@ public class Agent : MonoBehaviour
             MovementCompo = movement;
             MovementCompo.Initialize(this);
         }
+        if (TryGetComponent(out Health health)) {
+            HealthCompo = health;
+            HealthCompo.SetOwner(this);
+        }
     }
 
     #region Delay callback coroutine
@@ -31,10 +35,21 @@ public class Agent : MonoBehaviour
         return StartCoroutine(DelayCoroutine(delayTime, Callback));
     }
 
+    public Coroutine StartDelayCallback(Func<bool> delayAction, Action Callback)
+    {
+        return StartCoroutine(DelayCoroutine(delayAction, Callback));
+    }
+
     protected IEnumerator DelayCoroutine(float delayTime, Action Callback)
     {
         yield return new WaitForSeconds(delayTime);
         Callback?.Invoke();
+    }
+
+    protected IEnumerator DelayCoroutine(Func<bool> delayAction, Action callback)
+    {
+        yield return new WaitUntil(() => delayAction.Invoke());
+        callback?.Invoke();
     }
     #endregion
 

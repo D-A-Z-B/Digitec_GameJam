@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f31caef869c4144873773b7415a0f7, type: 3}
   m_Name: Sensitive
   m_EditorClassIdentifier: 
-  AlreadyApplied: 1
+  AlreadyApplied: 0
   IncreaseJustEvasionRange: 0

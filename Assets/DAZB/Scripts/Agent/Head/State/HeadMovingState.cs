@@ -19,6 +19,7 @@ public class HeadMovingState : HeadState
     public override void Enter()
     {
         base.Enter();
+        head.HealthCompo._isInvincible = true;
         if (extraMove == false)
         {
             if (Time.time > lastAttackTime + head.attackCoolDown)
@@ -118,8 +119,15 @@ public class HeadMovingState : HeadState
     public bool CollisionCheck()
     {
         int numColliders = Physics2D.OverlapCircleNonAlloc(head.transform.position, 0.5f, collider2DResults, head.returnLayer);
-        if (numColliders > 0) {
-            return true;
+        for (int i = 0; i < numColliders; i++) {
+            if (collider2DResults[i].gameObject.layer == LayerMask.NameToLayer("Enemy")) {
+                //collider2DResults[i].GetComponent<Health>().ApplyDamage(head.player.attackDamage, head.transform);
+                head.SparkEvent?.Invoke();
+                return true;
+            }
+            if ((head.returnLayer & (1 << collider2DResults[i].gameObject.layer)) != 0) {
+                return true;
+            }
         }
         return false;
     }

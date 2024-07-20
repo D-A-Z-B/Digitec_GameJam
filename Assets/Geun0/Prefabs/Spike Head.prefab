@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 11
   m_Sprite: {fileID: -39798684, guid: a331b063f892971439c4c3399ecfa0e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -135,9 +135,10 @@ MonoBehaviour:
   isDead: 0
   attackSpeed: 12
   attackCoolDown: 2
+  attackRange: 0
   neckDistance: 0.6
   returnSpeed: 12
-  defaultJustEvasionCheckRange: 0
+  JustEvasionCheckRange: 0
   returnLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -228,7 +229,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 13
   m_Sprite: {fileID: -1408190741, guid: a331b063f892971439c4c3399ecfa0e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -292,6 +293,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4522317118650703670, guid: 4497b0d0d6b267146bfd82a0966f71d7, type: 3}
+      propertyPath: m_SortingOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4522317118650703670, guid: 4497b0d0d6b267146bfd82a0966f71d7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

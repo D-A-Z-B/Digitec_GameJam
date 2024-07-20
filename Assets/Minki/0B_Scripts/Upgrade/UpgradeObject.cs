@@ -32,15 +32,24 @@ public class UpgradeObject : MonoBehaviour, IInteractable
         OnInteractEnd?.Invoke();
     }
 
-    public void Enter() {
-        UIManager.Instance.ActiveUpgradeDescription(_upgradeSO, _descriptionPosition.position);
+    bool isEnter = false;
+
+    private void Update() {
+        if (isEnter == false) return;
         if (Keyboard.current.fKey.isPressed) {
             UIManager.Instance.DeactiveUpgradeDescription();
             AbilityManager.Instance.SelectObject(index);
         }
     }
 
+    public void Enter() {
+        isEnter = true;
+        AbilityManager.Instance.uiPos.position = new Vector3(AbilityManager.Instance.spawnedUpgradeObjects[index].transform.position.x, 3f);
+        UIManager.Instance.ActiveUpgradeDescription(_upgradeSO, _descriptionPosition.position);
+    }
+
     public void Exit() {
+        isEnter = false;
         UIManager.Instance.DeactiveUpgradeDescription();
     }
 

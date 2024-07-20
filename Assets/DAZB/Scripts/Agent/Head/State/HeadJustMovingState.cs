@@ -20,6 +20,7 @@ public class HeadJustMovingState : HeadState
         shockWaveRoutine = head.StartCoroutine(StartShockWaveRoutine());
         cameraRoutine = head.StartCoroutine(StartCameraRoutine());
         head.player.InputReader.PlayerInputDisable();
+        head.HealthCompo._isInvincible = true;
     }
 
     private IEnumerator StartCameraRoutine()
