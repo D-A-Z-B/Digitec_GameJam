@@ -54,6 +54,9 @@ public class HeadMovingState : HeadState
                 }
                 yield break;
             }
+            if (CollisionCheck()) {
+                stateMachine.ChangeState(HeadStateEnum.Return);
+            }
             head.transform.position += (Vector3)(head.attackSpeed * Time.deltaTime * moveDir);
             yield return null;
         }
@@ -69,7 +72,17 @@ public class HeadMovingState : HeadState
         }
     }
 
+    public bool CollisionCheck() {
+        Collider2D collider = Physics2D.OverlapCircle(head.transform.position, 0.5f, head.returnLayer);
+        if (collider != null) {
+            if (collider.gameObject.layer == head.returnLayer) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private bool JustEvasionCheck() {
-        return true;
+        return false;
     }
 }

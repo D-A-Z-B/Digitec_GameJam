@@ -30,7 +30,7 @@ public class HeadReturnState : HeadState
         base.Exit();
     }
 
-    private IEnumerator ReturnRoutine()
+    private IEnumerator ReturnRoutine() 
     {
         Vector2 moveDir;
         while (head.ReturnPositionList.Count > 0)
@@ -45,8 +45,10 @@ public class HeadReturnState : HeadState
                 yield return null;
             }
 
+            head.transform.position = endPos; 
             head.MovementCompo.StopImmediately();
         }
+
         Vector2 playerPos = new Vector2(head.player.transform.position.x, head.player.transform.position.y + 0.8f);
         moveDir = (playerPos - (Vector2)head.transform.position).normalized;
         while (Vector2.Distance(head.transform.position, playerPos) > 0.1f)
@@ -56,8 +58,9 @@ public class HeadReturnState : HeadState
             head.transform.position += (Vector3)(head.attackSpeed * 2 * Time.deltaTime * moveDir);
             yield return null;
         }  
+
+        head.transform.position = playerPos;
         head.MovementCompo.StopImmediately();
         stateMachine.ChangeState(HeadStateEnum.OnBody);
-        yield return null;
     }
 }

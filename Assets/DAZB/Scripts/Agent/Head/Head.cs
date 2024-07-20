@@ -12,9 +12,9 @@ public enum HeadStateEnum {
 
 public class Head : Agent {
     [Header("Setting Values")]
-    public float attackRange;
     public float attackSpeed;
     public float attackCoolDown;
+    public LayerMask returnLayer;
     public HeadStateMachine StateMachine {get; protected set;}
     [SerializeField] private InputReader inputReader;
     public InputReader InputReader => inputReader;
