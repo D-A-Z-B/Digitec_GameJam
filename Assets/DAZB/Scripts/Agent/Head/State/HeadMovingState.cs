@@ -42,6 +42,8 @@ public class HeadMovingState : HeadState
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         moveDir = (mousePos - (Vector2)head.transform.position).normalized;
         startPos = head.transform.position;
+        
+        head.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(moveDir.y, moveDir.x));
 
         if (moveRoutine != null) {
             head.StopCoroutine(moveRoutine);
@@ -77,12 +79,12 @@ public class HeadMovingState : HeadState
     }
 
     public override void Exit() {
-        base.Exit();
-        // 상태를 떠날 때 lastAttackTime을 업데이트 하지 않음
         if (moveRoutine != null) {
             head.StopCoroutine(moveRoutine);
             moveRoutine = null;
         }
+        head.transform.eulerAngles = Vector2.zero;
+        base.Exit();
     }
 
     public bool CollisionCheck() {
