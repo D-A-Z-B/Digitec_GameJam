@@ -17,6 +17,7 @@ public class RoomGenerator : MonoBehaviour
         for(int i = 0; i < 3; ++i) {
             Generate(new Vector2(_roomOffset * _roomAmount * i, 0));
         }
+        _rooms[0].v_cam.Priority = 11;
     }
 
     private void Generate(Vector2 startPosition) {
