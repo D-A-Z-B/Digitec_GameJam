@@ -29,6 +29,7 @@ public class Head : Agent {
     public bool AbilityComeBack = false;
     public bool AbilityGravitation = false;
     public bool AbilitySpark = false;
+    public bool AbilityApShot = false;
     public Action SparkEvent;
     protected override void Awake()
     {
