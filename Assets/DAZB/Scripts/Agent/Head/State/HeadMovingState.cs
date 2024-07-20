@@ -122,6 +122,9 @@ public class HeadMovingState : HeadState
         for (int i = 0; i < numColliders; i++) {
             if (collider2DResults[i].gameObject.layer == LayerMask.NameToLayer("Enemy")) {
                 //collider2DResults[i].GetComponent<Health>().ApplyDamage(head.player.attackDamage, head.transform);
+                if (head.AbilityApShot) {
+                    return false;
+                }
                 head.SparkEvent?.Invoke();
                 return true;
             }

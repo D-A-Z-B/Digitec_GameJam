@@ -15,6 +15,7 @@ public class AbilitySpike : AbilityEffectSO {
             newObjectHead.AbilityComeBack = PlayerManager.Instance.Head.AbilityComeBack;
             newObjectHead.AbilityGravitation = PlayerManager.Instance.Head.AbilityGravitation;
             newObjectHead.AbilitySpark = PlayerManager.Instance.Head.AbilitySpark;
+            newObjectHead.AbilityApShot = PlayerManager.Instance.Head.AbilityApShot;
             newObjectHead.JustEvasionCheckRange = PlayerManager.Instance.Head.JustEvasionCheckRange;
             newObjectHead.returnLayer = PlayerManager.Instance.Head.returnLayer;
             newObjectHead.attackRange = PlayerManager.Instance.Head.attackRange;

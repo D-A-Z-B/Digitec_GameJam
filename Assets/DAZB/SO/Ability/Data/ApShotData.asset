@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f5cc7d75c21b9649913aadff2943b47, type: 3}
-  m_Name: ReigniteDate
+  m_Name: ApShotData
   m_EditorClassIdentifier: 
-  name: "\uC7AC\uC810\uD654"
-  icon: {fileID: 21300000, guid: ec7d69e6f3630ce459a28a422228c05f, type: 3}
-  description: "\uBA38\uB9AC\uAC00 \uC774\uB3D9\uD6C4 \uC989\uC2DC \uBAB8\uC73C\uB85C
-    \uB3CC\uC544\uC635\uB2C8\uB2E4."
-  abilityEffectSO: {fileID: 11400000, guid: b1fcd567869098743820851d0ebadd8c, type: 2}
+  name: "\uCCA0\uAC11\uD0C4"
+  icon: {fileID: 21300000, guid: b7e694f36fca32742a86647d5f451d4d, type: 3}
+  description: "\uBA38\uB9AC\uAC00 \uC801\uC744 \uAD00\uD1B5\uD569\uB2C8\uB2E4."
+  abilityEffectSO: {fileID: 11400000, guid: 59677e5a2cdec5647bd3551545682d3e, type: 2}

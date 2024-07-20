@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: "\uAC00\uC2DC"
   icon: {fileID: 21300000, guid: 88d30f283696fb441abe985f77312836, type: 3}
-  description: "\uB300\uCDA9 \uC124\uBA85"
+  description: "\uBA38\uB9AC\uC5D0 \uAC00\uC2DC\uAC00 \uB3CB\uC544\uB0A9\uB2C8\uB2E4."
   abilityEffectSO: {fileID: 11400000, guid: 23828e2a91cba3a45aa6f575d744b667, type: 2}
