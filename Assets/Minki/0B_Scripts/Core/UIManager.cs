@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -8,6 +9,7 @@ public class UIManager : MonoSingleton<UIManager>
     private UIDocument _document;
 
     private VisualElement _root;
+    private VisualElement _stageLabel;
     private UpgradeDescriptionUI _upgradeDescription;
 
     private void Awake() {
@@ -17,10 +19,27 @@ public class UIManager : MonoSingleton<UIManager>
     private void Start() {
         _root = _document.rootVisualElement.Q<VisualElement>("Container");
 
+        _stageLabel = _root.Q<VisualElement>("StageLabel");
+
         var upgradeDescription = UxmlHelper.GetTree(UXML.Upgrade).Instantiate();
         _root.Add(upgradeDescription);
 
         _upgradeDescription = new UpgradeDescriptionUI(upgradeDescription);
+        _upgradeDescription.Root.style.display = DisplayStyle.None;
+    }
+
+    public void ShowStageLabel(string name) {
+        _stageLabel.Q<Label>("StageText").text = name;
+
+        StartCoroutine(ShowStageLabelCoroutine());
+    }
+
+    private IEnumerator ShowStageLabelCoroutine() {
+        _stageLabel.AddToClassList("on");
+
+        yield return new WaitForSeconds(1.5f);
+
+        _stageLabel.RemoveFromClassList("on");
     }
 
     public void ActiveUpgradeDescription(UpgradeSO so, Vector2 worldPosition) {

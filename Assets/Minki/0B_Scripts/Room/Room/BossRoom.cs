@@ -10,6 +10,15 @@ public class BossRoom : Room
     }
 
     private void SpawnBoss() {
-        Instantiate(_bossPrefab, _bossSpawnPosition.position, Quaternion.identity, transform);
+        Enemy boss = Instantiate(_bossPrefab, _bossSpawnPosition.position, Quaternion.identity, transform);
+
+        boss.HealthCompo.OnDead += ClearCheck;
+    }
+
+    private void ClearCheck() {
+        if(nextRoom != null) Clear();
+        else {
+            Debug.Log("게임 끝!!");
+        }
     }
 }

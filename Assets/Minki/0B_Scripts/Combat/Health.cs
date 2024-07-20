@@ -18,6 +18,14 @@ public class Health : MonoBehaviour, IDamageable
 
     private Agent _owner;
 
+    public int CurrentHealth {
+        get => _currentHealth;
+        set {
+            _currentHealth = Mathf.Clamp(value, 0, _maxHealth);
+            healthFilled.fillAmount = (float)_currentHealth / _maxHealth;
+        }
+    }
+
     public void SetOwner(Agent owner) {
         _owner = owner;
 
@@ -25,11 +33,14 @@ public class Health : MonoBehaviour, IDamageable
         _originMat = _owner.SpriteRendererCompo.material;
     }
 
+    public void IncreaseHealth(int value) {
+        CurrentHealth += value;
+    }
+
     public void ApplyDamage(int damage, Transform dealer) {
         if(_owner.isDead) return;
 
-        _currentHealth = Mathf.Clamp(_currentHealth - damage, 0, _maxHealth);
-        healthFilled.fillAmount = (float)_currentHealth / _maxHealth;
+        CurrentHealth -= damage;
 
         OnHit?.Invoke();
 

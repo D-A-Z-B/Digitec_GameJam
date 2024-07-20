@@ -5,6 +5,7 @@ using UnityEngine;
 public class BattleRoom : Room
 {
     [SerializeField] private PhaseSO[] _phases;
+    [SerializeField] private GameObject _upgradeObjects;
 
     private int _currentPhase = 0;
     private bool _phaseClear = false;
@@ -32,8 +33,10 @@ public class BattleRoom : Room
         ++RoomManager.Instance.BattleCount;
 
         if(RoomManager.Instance.BattleCount == 2) {
-            Debug.Log("증강");
-            Clear();
+            foreach(Transform upgradeObject in _upgradeObjects.transform) {
+                upgradeObject.GetComponent<UpgradeObject>().OnInteractEnd += Clear;
+            }
+            _upgradeObjects.SetActive(true);
         }
         else Clear();
     }

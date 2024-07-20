@@ -1,22 +1,40 @@
 using System;
 using UnityEngine;
 using Cinemachine;
+using System.Collections;
 
 public class Room : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera v_cam;
+    [SerializeField] private Portal _portal;
     [SerializeField] private GameObject _frontWall;
     [SerializeField] private GameObject _backWall;
 
-    public Room _nextRoom;
+    [SerializeField] private string _stageName;
 
-    protected Action OnActive;
+    public Room nextRoom;
+
+    protected event Action OnActive;
+    protected event Action OnCameraMoveEnd;
+
+    private void Start() {
+        _portal?.SetOwner(this);
+    }
 
     public void Active() {
         _backWall.SetActive(true); 
         v_cam.Priority = 15;
 
+        StartCoroutine(CameraMoveEndCoroutine());
+
         OnActive?.Invoke();
+    }
+
+    private IEnumerator CameraMoveEndCoroutine() {
+        yield return new WaitForSeconds(2f);
+
+        UIManager.Instance.ShowStageLabel(_stageName);
+        OnCameraMoveEnd?.Invoke();
     }
 
     public virtual void Clear() {
@@ -24,9 +42,9 @@ public class Room : MonoBehaviour
     }
 
     public void GotoNextStage() {
-        if(_nextRoom == null) return;
+        if(nextRoom == null) return;
 
-        _nextRoom.Active();
+        nextRoom.Active();
 
         v_cam.Priority = 10;
     }
