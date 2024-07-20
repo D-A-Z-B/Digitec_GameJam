@@ -10,12 +10,15 @@ public class RoomManager : MonoSingleton<RoomManager>
     }
 
     [SerializeField] private RoomGenerator _generator;
+    [SerializeField] private InputReader _inputReader;
 
     private void Awake() {
         _generator.GenerateAll();
+        _inputReader.PlayerInputDisable();
     }
 
     public void GameStart() {
         _generator.ActiveFirstRoom();
+        _inputReader.PlayerInputEnable();
     }
 }

@@ -590,9 +590,10 @@ MonoBehaviour:
   isDead: 0
   attackSpeed: 12
   attackCoolDown: 3
+  attackRange: 0
   neckDistance: 1
   returnSpeed: 12
-  defaultJustEvasionCheckRange: 0
+  JustEvasionCheckRange: 0
   returnLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -1014,6 +1015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _generator: {fileID: 1063446629}
+  _inputReader: {fileID: 11400000, guid: a869a1869e4174e478d0cb605004dca3, type: 2}
 --- !u!1 &1219035156
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,6 +1463,7 @@ MonoBehaviour:
   isDead: 0
   moveSpeed: 7
   limitJumpPower: 10
+  attackDamage: 0
   inputReader: {fileID: 11400000, guid: a869a1869e4174e478d0cb605004dca3, type: 2}
 --- !u!212 &1538438078
 SpriteRenderer:
