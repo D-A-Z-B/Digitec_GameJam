@@ -24,7 +24,7 @@ public class Health : MonoBehaviour, IDamageable
 
     [HideInInspector] public bool _isInvincible = false;
 
-    [HideInInspector] public Image healthFilled;
+    public Image healthFilled;
 
     private Agent _owner;
 
