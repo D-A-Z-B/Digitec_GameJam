@@ -6,6 +6,7 @@ public class HeadStateMachine
 {
     public HeadState CurrentState {get; private set;}
     public Dictionary<HeadStateEnum, HeadState> stateDictionary;
+    public HeadStateEnum CurrentStateEnum;
     private Head head;
 
     public HeadStateMachine() {
@@ -21,8 +22,9 @@ public class HeadStateMachine
         if (head.CanStateChangeable == false) return;
         CurrentState.Exit();
         CurrentState = stateDictionary[newState];
-        CurrentState.Enter();
         Debug.Log(newState);
+        CurrentStateEnum = newState;
+        CurrentState.Enter();
     }
 
     public void AddState(HeadStateEnum headStateEnum, HeadState headState) {

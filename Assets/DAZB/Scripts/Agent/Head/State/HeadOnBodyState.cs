@@ -16,7 +16,7 @@ public class HeadOnBodyState : HeadState
     public override void UpdateState()
     {
         base.UpdateState();
-        head.transform.position = head.player.transform.position + new Vector3(0, 1);
+        head.transform.position = head.player.transform.position + new Vector3(0, head.neckDistance);
     }
 
     private void HeadMoveEventHandle()

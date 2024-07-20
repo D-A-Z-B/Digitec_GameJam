@@ -28,6 +28,14 @@ public class InputReader : ScriptableObject, IPlayerActions
         _controls.Player.Enable();
     }
 
+    public void PlayerInputEnable() {
+        _controls.Player.Enable();
+    }
+
+    public void PlayerInputDisable() {
+        _controls.Player.Disable();
+    }
+
     public Vector2 Movement;
     public void OnMovement(InputAction.CallbackContext context)
     {

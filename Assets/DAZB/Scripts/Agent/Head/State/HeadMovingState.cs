@@ -83,6 +83,6 @@ public class HeadMovingState : HeadState
     }
 
     private bool JustEvasionCheck() {
-        return false;
+        return true;
     }
 }
