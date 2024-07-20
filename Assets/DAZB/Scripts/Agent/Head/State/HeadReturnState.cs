@@ -12,6 +12,9 @@ public class HeadReturnState : HeadState
     public override void Enter()
     {
         base.Enter();
+        if (head.AbilityReignite) {
+            stateMachine.ChangeState(HeadStateEnum.OnBody);
+        }
         if (returnRoutine != null)
         {
             head.StopCoroutine(returnRoutine);

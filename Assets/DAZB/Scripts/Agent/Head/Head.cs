@@ -16,6 +16,7 @@ public class Head : Agent {
     public float attackCoolDown;
     public float neckDistance;
     public float returnSpeed;
+    public float defaultJustEvasionCheckRange;
     public LayerMask returnLayer;
     public GameObject ShockWave;
     public HeadStateMachine StateMachine {get; protected set;}
@@ -23,7 +24,7 @@ public class Head : Agent {
     public InputReader InputReader => inputReader;
     public Player player {get; protected set;}
     [HideInInspector] public Stack<Vector2> ReturnPositionList = new Stack<Vector2>();
-
+    [HideInInspector] public bool AbilityReignite = false;
     protected override void Awake()
     {
         base.Awake();
