@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SensitiveData
   m_EditorClassIdentifier: 
   name: "\uC608\uBBFC"
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: bce45ddfa1555084483993d23745a360, type: 3}
   description: "\uB300\uCDA9 \uC124\uBA85"
   abilityEffectSO: {fileID: 11400000, guid: 8ca069775332cae4682a002abdba3011, type: 2}

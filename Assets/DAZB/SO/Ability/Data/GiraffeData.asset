@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: GiraffeData
   m_EditorClassIdentifier: 
   name: "\uAE30\uB9B0"
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 955a2ee2aaa0cfc459eef232e0dce7d1, type: 3}
   description: "\uB300\uCDA9 \uC124\uBA85"
   abilityEffectSO: {fileID: 11400000, guid: 3aa5a3178559d534fa52f0abc5d1de0c, type: 2}
