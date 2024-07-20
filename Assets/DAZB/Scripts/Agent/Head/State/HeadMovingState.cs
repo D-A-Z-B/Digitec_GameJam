@@ -19,10 +19,11 @@ public class HeadMovingState : HeadState
     public override void Enter()
     {
         base.Enter();
-        if (extraMove == false) {
-            if (Time.time > lastAttackTime + head.attackCoolDown) {
+        if (extraMove == false)
+        {
+            if (Time.time > lastAttackTime + head.attackCoolDown)
+            {
                 stateMachine.ChangeState(HeadStateEnum.OnBody);
-                return;
             }
         }
 
@@ -31,58 +32,99 @@ public class HeadMovingState : HeadState
         moveDir = (mousePos - (Vector2)head.transform.position).normalized;
         startPos = head.transform.position;
 
-        if (moveRoutine != null) {
+        if (moveRoutine != null)
+        {
             head.StopCoroutine(moveRoutine);
         }
         moveRoutine = head.StartCoroutine(MoveRoutine());
     }
 
-    private IEnumerator MoveRoutine() {
-        while (true) {
-            if (Vector2.Distance(head.transform.position, mousePos) <= 0.1f) {
+    private IEnumerator MoveRoutine()
+    {
+        float elapsedTime = 0f;
+        float duration = 1f / head.attackSpeed;
+        float distance = Vector2.Distance(startPos, mousePos);
+
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+            float easedT = EaseOutQuart(t);
+            head.transform.position = Vector2.Lerp(startPos, mousePos, easedT);
+            moveDir = (mousePos - (Vector2)head.transform.position).normalized;
+            Debug.Log(moveDir);
+            head.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg - 90);
+            elapsedTime += Time.deltaTime;
+
+            if (Vector2.Distance(head.transform.position, mousePos) <= 0.1f)
+            {
                 head.MovementCompo.StopImmediately();
-                if (extraMove == true) {
+                if (extraMove)
+                {
                     extraMove = false;
                     stateMachine.ChangeState(HeadStateEnum.Return);
-                } else {
-                    if (JustEvasionCheck()) {
+                }
+                else
+                {
+                    if (JustEvasionCheck())
+                    {
                         extraMove = true;
                         stateMachine.ChangeState(HeadStateEnum.JustMoving);
-                    } else {
+                    }
+                    else
+                    {
                         stateMachine.ChangeState(HeadStateEnum.Return);
                     }
                 }
                 yield break;
             }
-            if (CollisionCheck()) {
+
+            if (Vector2.Distance(startPos, head.transform.position) > head.attackRange) {
                 stateMachine.ChangeState(HeadStateEnum.Return);
+                yield break;
             }
-            head.transform.position += (Vector3)(head.attackSpeed * Time.deltaTime * moveDir);
+
+            if (CollisionCheck())
+            {
+                stateMachine.ChangeState(HeadStateEnum.Return);
+                yield break;
+            }
+
             yield return null;
         }
+
+        // 종료 시점 처리
+        head.transform.position = mousePos;
+        head.MovementCompo.StopImmediately();
+        stateMachine.ChangeState(HeadStateEnum.Return);
+    }
+
+    private float EaseOutQuart(float t)
+    {
+        return 1 - Mathf.Pow(1 - t, 4);
     }
 
     public override void Exit()
     {
         base.Exit();
         lastAttackTime = Time.time;
-        if (moveRoutine != null) {
+        if (moveRoutine != null)
+        {
             head.StopCoroutine(moveRoutine);
             moveRoutine = null;
         }
     }
 
-    public bool CollisionCheck() {
-        Collider2D collider = Physics2D.OverlapCircle(head.transform.position, 0.5f, head.returnLayer);
-        if (collider != null) {
-            if (collider.gameObject.layer == head.returnLayer) {
-                return true;
-            }
+    private Collider2D[] collider2DResults = new Collider2D[10];
+    public bool CollisionCheck()
+    {
+        int numColliders = Physics2D.OverlapCircleNonAlloc(head.transform.position, 0.5f, collider2DResults, head.returnLayer);
+        if (numColliders > 0) {
+            return true;
         }
         return false;
     }
 
     private bool JustEvasionCheck() {
-        return true;
+        return false;
     }
 }

@@ -87,7 +87,7 @@ public class HeadJustMovingState : HeadState
                 float value = Mathf.Lerp(-0.1f, 1, currentTime / totalTime);
                 mat.SetFloat(WaveDistanceFromCenterHash, value);
                 yield return null;
-                currentTime += Time.unscaledDeltaTime * 120;
+                currentTime += Time.unscaledDeltaTime * 150;
             }
             else {
                 float value = Mathf.Lerp(-0.1f, 1, currentTime / totalTime);

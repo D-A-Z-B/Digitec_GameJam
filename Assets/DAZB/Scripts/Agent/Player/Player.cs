@@ -15,6 +15,7 @@ public class Player : Agent
     [Header("Setting Values")]
     public float moveSpeed;
     public float limitJumpPower;
+    public float attackDamage;
     public PlayerStateMachine StateMachine {get; protected set;}
     [SerializeField] private InputReader inputReader;
     public InputReader InputReader => inputReader;

@@ -14,9 +14,10 @@ public class Head : Agent {
     [Header("Setting Values")]
     public float attackSpeed;
     public float attackCoolDown;
+    public float attackRange;
     public float neckDistance;
     public float returnSpeed;
-    public float defaultJustEvasionCheckRange;
+    public float JustEvasionCheckRange;
     public LayerMask returnLayer;
     public GameObject ShockWave;
     public HeadStateMachine StateMachine {get; protected set;}
@@ -50,5 +51,11 @@ public class Head : Agent {
 
     protected void Update() {
         StateMachine.CurrentState.UpdateState();
+    }
+
+    
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 0.5f);
     }
 }
