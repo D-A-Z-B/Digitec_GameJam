@@ -14,6 +14,7 @@ public class Head : Agent {
     [Header("Setting Values")]
     public float attackSpeed;
     public float attackCoolDown;
+    public float attackRange;
     public float neckDistance;
     public float returnSpeed;
     public float JustEvasionCheckRange;

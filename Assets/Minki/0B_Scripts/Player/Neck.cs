@@ -6,6 +6,9 @@ public class Neck : MonoBehaviour
 {
     [SerializeField] private int _neckAmount = 6;
     [SerializeField] private int _index = 1;
+    public int Index {
+        get => _index;
+    }
 
     private Transform _playerHeadTrm;
     private Transform _playerBodyTrm;
@@ -25,10 +28,10 @@ public class Neck : MonoBehaviour
 
         if(_head.ReturnPositionList.Count > 1) {
             List<Vector2> returnPositionList = _head.ReturnPositionList.ToList();
-            transform.position = GetPosition(bodyPosition, returnPositionList[0], headPosition, _index / (_neckAmount + 1f));
+            transform.position = GetPosition(bodyPosition, returnPositionList[0], headPosition, _index / ((int)_head.attackRange + 1f));
         }
         else {
-            transform.position = GetPosition(bodyPosition, bodyPosition, headPosition, _index / (_neckAmount + 1f));
+            transform.position = GetPosition(bodyPosition, bodyPosition, headPosition, _index / ((int)_head.attackRange + 1f));
         }
     }
 
@@ -39,9 +42,11 @@ public class Neck : MonoBehaviour
         float percentDistance = sumDistance * percent;
 
         if(percentDistance < startToMiddleDistance) {
+            transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2((middlePosition - startPosition).y, (middlePosition - startPosition).x));
             return Vector2.Lerp(startPosition, middlePosition, percentDistance / startToMiddleDistance);
         }
         else {
+            transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2((middlePosition - middlePosition).y, (endPosition - middlePosition).x));
             return Vector2.Lerp(middlePosition, endPosition, (percentDistance - startToMiddleDistance) / middleToEndDistance);
         }
     }
