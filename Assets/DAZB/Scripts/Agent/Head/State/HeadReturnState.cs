@@ -13,7 +13,7 @@ public class HeadReturnState : HeadState
     public override void Enter()
     {
         base.Enter();
-        head.HealthCompo._isInvincible = true;
+        head.HealthCompo.isInvincible = true;
         if (returnRoutine != null)
         {
             head.StopCoroutine(returnRoutine);
