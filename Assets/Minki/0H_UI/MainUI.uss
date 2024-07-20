@@ -1,0 +1,8 @@
+.upgrade-container {
+    position: absolute;
+    top: 50%;
+    width: 1400px;
+    translate: -50% -50%;
+    height: 800px;
+    left: 50%;
+}

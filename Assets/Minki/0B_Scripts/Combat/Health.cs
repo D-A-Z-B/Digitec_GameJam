@@ -32,7 +32,6 @@ public class Health : MonoBehaviour, IDamageable
         healthFilled.fillAmount = (float)_currentHealth / _maxHealth;
 
         OnHit?.Invoke();
-        //AudioManager.Instance.PlaySFX();
 
         if(_currentHealth == 0) {
             _owner.isDead = true;

@@ -1,29 +1,58 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleRoom : Room
 {
-    [System.Serializable]
-    private struct EnemySpawnSet {
-        public Enemy enemy;
-        public Transform position;
-    }
+    [SerializeField] private PhaseSO[] _phases;
 
-    [SerializeField] private EnemySpawnSet[] _enemySet;
+    private int _currentPhase = 0;
+    private bool _phaseClear = false;
 
     private List<Enemy> _enemies = new List<Enemy>();
 
+    private void Start() {
+        OnActive += Phase;
+    }
+
+    private void Phase() {
+        StartCoroutine(PhaseCoroutine());
+    }
+
+    private IEnumerator PhaseCoroutine() {
+        yield return new WaitForSeconds(2f);
+
+        for(int i = 0; i < 3; ++i) {
+            Generate();
+
+            yield return new WaitUntil(() => _phaseClear);
+            yield return new WaitForSeconds(1f);
+        }
+
+        ++RoomManager.Instance.BattleCount;
+
+        if(RoomManager.Instance.BattleCount == 2) {
+            Debug.Log("증강");
+            Clear();
+        }
+        else Clear();
+    }
+
     public void Generate() {
-        for(int i = 0; i < _enemySet.Length; ++i) {
-            Enemy enemy = Instantiate(_enemySet[i].enemy, _enemySet[i].position.position, Quaternion.identity, transform);
+        EnemySpawnSet[] enemySet = _phases[_currentPhase].enemySet;
+
+        for(int i = 0; i < enemySet.Length; ++i) {
+            Enemy enemy = Instantiate(enemySet[i].enemy, enemySet[i].position.position, Quaternion.identity, transform);
             enemy.HealthCompo.OnDead += () => _enemies.Remove(enemy);
             enemy.HealthCompo.OnDead += CheckClear;
 
             _enemies.Add(enemy);
         }
+
+        ++_currentPhase;
     }
 
     private void CheckClear() {
-        if(_enemies.Count == 0) Clear();
+        _phaseClear = true;
     }
 }

@@ -29,13 +29,6 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
-    protected virtual void Awake() {
-        if(_instance == null) {
-            DontDestroyOnLoad(gameObject);
-        }
-        else Destroy(gameObject);
-    }
-
     private void OnDestroy()
     {
         IsDestroyed = true;

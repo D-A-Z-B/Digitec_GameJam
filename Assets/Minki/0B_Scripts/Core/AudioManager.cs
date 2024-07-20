@@ -13,9 +13,7 @@ public class AudioManager : MonoSingleton<AudioManager>
 
     private Dictionary<string, AudioClip> _clipDictionary = new Dictionary<string, AudioClip>();
 
-    protected override void Awake() {
-        base.Awake();
-        
+    private void Awake() {
         for(int i = 0; i < _clips.Length; ++i) {
             _clipDictionary.Add(_clips[i].name, _clips[i]);
         }
