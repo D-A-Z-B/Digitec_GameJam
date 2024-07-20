@@ -5,6 +5,7 @@ using UnityEngine.Playables;
 public class DinoTimeline : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader;
+    [SerializeField] private GameObject _boss;
 
     private PlayableDirector _timeline;
 
@@ -31,5 +32,8 @@ public class DinoTimeline : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         _inputReader.PlayerInputEnable();
+
+        _boss.SetActive(true);
+        gameObject.SetActive(false);
     }
 }
