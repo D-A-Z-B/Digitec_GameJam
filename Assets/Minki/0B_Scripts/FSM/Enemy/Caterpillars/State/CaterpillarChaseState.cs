@@ -13,16 +13,9 @@ public class CaterpillarChaseState : ChaseState
     }
 
     public override void UpdateState() {
-        Vector2 direction = _playerHeadTrm.position - _enemy.transform.position;
         float distance = Mathf.Abs(_playerHeadTrm.position.x - _enemy.transform.position.x);
-
-        _enemy.FlipController(direction.normalized.x);
-        if(_enemy.nearDistance < distance) {
-            Move();
-        }
-        else _enemy.StopImmediately(false);
         
-        if(_enemy.CanAttack() && _enemy.attackDistance >= distance) {
+        if(_enemy.CanAttack() && _enemy.attackDistance / 2 >= distance) {
             _stateMachine.ChangeState(EnemyStateEnum.Attack);
         }
 
@@ -36,6 +29,6 @@ public class CaterpillarChaseState : ChaseState
         _enemy.FlipController(direction.normalized.x);
 
         _enemy.SetVelocity(_enemy.FacingDirection * _enemy.moveSpeed, 0);
-        _enemy.StartDelayCallback(0.8f, () => _enemy.StopImmediately(false));
+        _enemy.StartDelayCallback(0.4f, () => _enemy.StopImmediately(false));
     }
 }

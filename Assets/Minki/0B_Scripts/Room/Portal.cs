@@ -11,7 +11,9 @@ public class Portal : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if((_whatIsPlayer.value & (1 << other.gameObject.layer)) > 0)
+        if((_whatIsPlayer.value & (1 << other.gameObject.layer)) > 0) {
             _owner.GotoNextStage();
+            enabled = false;
+        }
     }
 }

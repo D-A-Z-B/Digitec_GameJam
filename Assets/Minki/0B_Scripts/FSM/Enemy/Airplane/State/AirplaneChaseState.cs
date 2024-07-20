@@ -14,6 +14,8 @@ public class AirplaneChaseState : ChaseState
 
         _enemy.SetVelocity(direction.normalized.x * _enemy.moveSpeed, direction.normalized.y * _enemy.moveSpeed);
 
+        _enemy.transform.rotation = Quaternion.Euler(0, _enemy.transform.eulerAngles.y, Mathf.Atan(direction.normalized.y / direction.normalized.x) * Mathf.Rad2Deg);
+
         if(_enemy.CanAttack() && _enemy.attackDistance >= direction.magnitude) {
             _stateMachine.ChangeState(EnemyStateEnum.Attack);
         }
