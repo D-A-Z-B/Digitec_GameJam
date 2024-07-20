@@ -38,7 +38,7 @@ public class BattleRoom : Room
 
         ++RoomManager.Instance.BattleCount;
 
-        if(RoomManager.Instance.BattleCount == 2) {
+        if(RoomManager.Instance.BattleCount == 1) {
             foreach(Transform upgradeObject in _upgradeObjects.transform) {
                 upgradeObject.GetComponent<UpgradeObject>().OnInteractEnd += Clear;
             }
