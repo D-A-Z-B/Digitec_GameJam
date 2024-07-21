@@ -1,9 +1,11 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RoomGenerator : MonoBehaviour
 {
     [SerializeField] private Room[] _roomPrefabs;
+    [SerializeField] private Room[] _battleRooms;
     private List<Room> _rooms = new List<Room>();
 
     [SerializeField] private int _roomAmount = 9;
@@ -37,7 +39,7 @@ public class RoomGenerator : MonoBehaviour
                 room = Instantiate(_roomPrefabs[2], position, Quaternion.identity, transform);
                 createRestRoom = true;
             }
-            else room = Instantiate(_roomPrefabs[1], position, Quaternion.identity, transform);
+            else room = Instantiate(_battleRooms[Random.Range(0, _battleRooms.Length)], position, Quaternion.identity, transform);
 
             _rooms.Add(room);
             
