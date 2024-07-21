@@ -873,6 +873,10 @@ MonoBehaviour:
   - {fileID: 8205783421277395535, guid: 4b32713f469ab6f478fb893231189296, type: 3}
   - {fileID: 2214946534081285329, guid: 00cb993eb39e1514f9db71a2ef042e9a, type: 3}
   - {fileID: 2507348182782911317, guid: 9844ce63c7331a14aacdf871aba82f41, type: 3}
+  _battleRooms:
+  - {fileID: 900253250736470058, guid: 4c801419eddf9944ba8478899d965797, type: 3}
+  - {fileID: 900253250736470058, guid: 9d42741ffec0c5a45b003e5a9a54079e, type: 3}
+  - {fileID: 900253250736470058, guid: b79ed736135a6974287d30cfae680983, type: 3}
   _roomAmount: 9
   _roomOffset: 28.5
 --- !u!114 &628589469
@@ -1472,7 +1476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 5
   _currentHealth: 0
-  _isPlayer: 0
+  _isPlayer: 1
   _whiteMat: {fileID: 0}
   isInvincible: 0
   healthFilled: {fileID: 0}
@@ -1539,7 +1543,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
