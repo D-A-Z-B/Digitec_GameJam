@@ -6,7 +6,7 @@
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement name="GameStart" class="game-start">
-        <ui:Label tabindex="-1" text="게임 이름" parse-escape-sequences="true" display-tooltip-when-elided="true" name="GameTitle" class="game-title" />
+        <ui:Label tabindex="-1" text="불타는 머리" parse-escape-sequences="true" display-tooltip-when-elided="true" name="GameTitle" class="game-title" />
         <ui:Button text="시작" parse-escape-sequences="true" display-tooltip-when-elided="true" name="GameStartBtn" class="game-start-btn" />
     </ui:VisualElement>
 </ui:UXML>

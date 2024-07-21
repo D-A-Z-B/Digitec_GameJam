@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BattleRoom : Room
@@ -39,6 +40,9 @@ public class BattleRoom : Room
 
             yield return new WaitUntil(() => _phaseClear);
             yield return new WaitForSeconds(1f);
+
+            ++_currentPhase;
+            _phaseClear = false;
         }
 
         ++RoomManager.Instance.BattleCount;
@@ -62,11 +66,10 @@ public class BattleRoom : Room
 
             _enemies.Add(enemy);
         }
-
-        ++_currentPhase;
     }
 
     private void CheckClear() {
-        _phaseClear = true;
+        if(_enemies.Count <= 1)
+            _phaseClear = true;
     }
 }
