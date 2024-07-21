@@ -19,6 +19,7 @@ public class AbilityBlind : AbilityEffectSO
     private IEnumerator BlindRoutine() {
         Light2D light = PlayerManager.Instance.Player.transform.Find("Light 2D").GetComponent<Light2D>();
         light.gameObject.SetActive(true);
+        light.GetComponentInChildren<SpriteRenderer>(false).transform.SetParent(PlayerManager.Instance.Head.transform);
         float currentTime = 0;
         float totalTime = 1f;
         float percent = 0;
