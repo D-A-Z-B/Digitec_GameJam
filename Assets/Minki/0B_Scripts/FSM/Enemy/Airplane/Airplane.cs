@@ -36,7 +36,7 @@ public class Airplane : Enemy
         
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
+    private void OnTriggerEnter2D(Collider2D other) {
         if(!successAttack && (_whatIsPlayer.value & (1 << other.gameObject.layer)) > 0) {
             if(other.gameObject.TryGetComponent(out IDamageable health)) {
                 health.ApplyDamage(1, transform);

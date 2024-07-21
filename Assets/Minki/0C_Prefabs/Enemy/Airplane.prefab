@@ -230,7 +230,7 @@ MonoBehaviour:
   ColliderCompo: {fileID: 0}
   DamageCasterCompo: {fileID: 0}
   moveSpeed: 5
-  nearDistance: 1
+  nearDistance: 0.3
   _whatIsPlayer:
     serializedVersion: 2
     m_Bits: 8
