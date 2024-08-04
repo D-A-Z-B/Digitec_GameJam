@@ -121,11 +121,12 @@ public class HeadMovingState : HeadState
         int numColliders = Physics2D.OverlapCircleNonAlloc(head.transform.position, 0.5f, collider2DResults, head.returnLayer);
         for (int i = 0; i < numColliders; i++) {
             if (collider2DResults[i].gameObject.layer == LayerMask.NameToLayer("Enemy")) {
-                collider2DResults[i].GetComponent<Health>().ApplyDamage(head.player.attackDamage, head.transform);
+                collider2DResults[i].GetComponent<IDamageable>().ApplyDamage(head.player.attackDamage, head.transform);
                 if (head.AbilityApShot) {
                     return false;
                 }
                 head.SparkEvent?.Invoke();
+                CameraManager.Instance.Shake(0.5f, 0.15f);
                 return true;
             }
             if ((head.returnLayer & (1 << collider2DResults[i].gameObject.layer)) != 0) {

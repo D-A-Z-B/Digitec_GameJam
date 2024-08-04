@@ -16,11 +16,12 @@ public class Fire : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other) {
         if((_whatIsPlayer & (1 << other.gameObject.layer)) > 0) {
-            if(other.TryGetComponent(out Player player)) {
+            if(other.TryGetComponent(out Head player)) {
                 player.HealthCompo.IncreaseHealth(1);
                 _collider.enabled = false;
 
                 _animator.SetTrigger(disappearHash);
+                Destroy(gameObject);
             }
         }
     }

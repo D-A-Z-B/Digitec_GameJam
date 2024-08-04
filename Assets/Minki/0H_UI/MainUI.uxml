@@ -6,7 +6,7 @@
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement name="GameStart" class="game-start">
-        <ui:Label tabindex="-1" text="불타는 머리" parse-escape-sequences="true" display-tooltip-when-elided="true" name="GameTitle" class="game-title" />
+        <ui:Label tabindex="-1" text="불타는 머리" parse-escape-sequences="true" display-tooltip-when-elided="true" name="GameTitle" class="game-title" style="-unity-font: url(&quot;project://database/Assets/Minki/Galmuri11.ttf?fileID=12800000&amp;guid=b4d58ea7ecf8a6c4fb34c7069874ec67&amp;type=3#Galmuri11&quot;);" />
         <ui:Button text="시작" parse-escape-sequences="true" display-tooltip-when-elided="true" name="GameStartBtn" class="game-start-btn" />
     </ui:VisualElement>
 </ui:UXML>

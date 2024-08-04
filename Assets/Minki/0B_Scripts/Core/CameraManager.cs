@@ -1,5 +1,3 @@
-using System.Collections;
-using UnityEngine;
 using Cinemachine;
 
 public class CameraManager : MonoSingleton<CameraManager>

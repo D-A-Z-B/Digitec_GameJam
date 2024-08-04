@@ -17,11 +17,8 @@ public class Room : MonoBehaviour
     protected event Action OnActive;
     protected event Action OnCameraMoveEnd;
 
-    private void Start() {
-        _portal?.SetOwner(this);
-    }
-
     public void Active() {
+        _portal?.SetOwner(this);
         _backWall.SetActive(true); 
         v_cam.Priority = 15;
 

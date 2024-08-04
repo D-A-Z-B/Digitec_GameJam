@@ -8,15 +8,17 @@ public class GasPump : MonoBehaviour, IDamageable
 
     private SpriteRenderer _spriteRenderer;
 
-    private void Awkae() {
+    private void Awake() {
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void ApplyDamage(int damage, Transform dealer) {
-        Instantiate(_boomEffect, transform.position, Quaternion.identity);
+        //Instantiate(_boomEffect, transform.position, Quaternion.identity);
 
         _spriteRenderer.sprite = _brokenGasPump;
         
         Instantiate(_firePrefab, transform.position, Quaternion.identity);
+
+        Destroy(gameObject);
     }
 }

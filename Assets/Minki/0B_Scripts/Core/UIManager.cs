@@ -6,6 +6,8 @@ public class UIManager : MonoSingleton<UIManager>
 {
     [field: SerializeField] public UXMLHelperSO UxmlHelper { get; private set; }
 
+    [SerializeField] private GameObject _legacyUI;
+
     private UIDocument _document;
 
     private VisualElement _root;
@@ -35,6 +37,7 @@ public class UIManager : MonoSingleton<UIManager>
     private void HandleGameStart() {
         _start.AddToClassList("start");
         RoomManager.Instance.GameStart();
+        _legacyUI.SetActive(true);
     }
 
     public void ShowStageLabel(string name) {

@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class AbilityManager : MonoSingleton<AbilityManager>
 {
@@ -9,30 +11,34 @@ public class AbilityManager : MonoSingleton<AbilityManager>
     public List<UpgradeObject> abilityObjectPrefabs = new List<UpgradeObject>();
     public List<UpgradeObject> spawnedUpgradeObjects = new List<UpgradeObject>(); // List로 수정
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            ApplyEffect();
-        }
-    }
+    private Action _selectAction;
 
-    private void Start()
-    {
-        Vector2[] vectorArr = {
-            new Vector2(-5, 0),
-            new Vector2(0, 0),
-            new Vector2(5, 0),
-        };
-        SpawnAbilityObject(vectorArr);
-    }
+    // private void Update()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.T))
+    //     {
+    //         ApplyEffect();
+    //     }
+    // }
+
+    // private void Start()
+    // {
+    //     // Vector2[] vectorArr = {
+    //     //     new Vector2(-5, 0),
+    //     //     new Vector2(0, 0),
+    //     //     new Vector2(5, 0),
+    //     // };
+    //     // SpawnAbilityObject(vectorArr);
+    // }
 
     /// <summary>
     /// 지정된 위치에 능력 오브젝트를 생성합니다.
     /// </summary>
     /// <param name="spawnPos">생성할 위치 배열</param>
-    public void SpawnAbilityObject(Vector2[] spawnPos)
+    public void SpawnAbilityObject(Vector2[] spawnPos, Action callback)
     {
+        _selectAction = null;
+        _selectAction = callback;
         int randNum;
         List<int> usedIndexes = new List<int>();
 
@@ -71,6 +77,8 @@ public class AbilityManager : MonoSingleton<AbilityManager>
                 Destroy(spawnedUpgradeObjects[i].gameObject);
             }
         }
+        spawnedUpgradeObjects.Clear();
+        _selectAction?.Invoke();
     }
 
     private void ApplyEffect()
